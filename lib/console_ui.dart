@@ -21,7 +21,9 @@ class ConsoleUi {
     }
 
     try {
+      // Get input as int.
       int choice = int.parse(stdin.readLineSync());
+      // If choice is not in the bounds of our options, prompt the user to enter agian.
       if (choice > 0 && choice <= strategies.length) {
         print('Selected strategy: ${strategies[choice - 1]}');
         return choice - 1;
@@ -29,6 +31,7 @@ class ConsoleUi {
         print('Not an available choice.');
         return requestStrategy(strategies);
       }
+      // If they enter nothing or non-numbers, use the default strategy.
     } on FormatException {
       print('Using defualt strategy: ${strategies[0]}');
       return 0;

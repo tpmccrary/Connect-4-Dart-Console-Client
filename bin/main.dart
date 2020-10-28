@@ -13,8 +13,8 @@ Future<void> main(List<String> arguments) async {
   serverInfo.info = await NetworkHandler.getServerInfo(
       serverInfo.givenUrl, serverInfo.defaultUrl);
 
-  // Sets all the strategies given from the server.
-  serverInfo.setStrategies(serverInfo.info);
+  // Stores all the strategies given from the server.
+  serverInfo.storeStrategies(serverInfo.info);
 
   // Request which strategy user wants to use and store their option.
   int selectedStratNum = ConsoleUi.requestStrategy(serverInfo.strategies);

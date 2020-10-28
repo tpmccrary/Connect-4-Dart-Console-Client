@@ -1,7 +1,5 @@
-import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:c4_app/response_parser.dart';
-
 import 'response_parser.dart';
 
 /// Static class that takes care of network functions.
