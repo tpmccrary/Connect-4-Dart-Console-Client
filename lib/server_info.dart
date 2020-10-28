@@ -1,5 +1,6 @@
-/// Class to hold the server info.
+/// Class to hold the server info (e.g. URL, JSON info, strategies)
 class C4ServerInfo {
+  /// The default URL that the app will try to connect to.
   final String _defaultUrl =
       'https://cssrvlab01.utep.edu/Classes/cs3360/tpmccrary/C4Service/src';
 
