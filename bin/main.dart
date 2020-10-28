@@ -6,7 +6,7 @@ Future<void> main(List<String> arguments) async {
   // Create new object to store the game/server info.
   C4ServerInfo serverInfo = new C4ServerInfo();
 
-  // Get the URL given form the user.
+  // Get a URL form the user.
   serverInfo.givenUrl = ConsoleUi.requestUrl(serverInfo.defaultUrl);
 
   // Request info from server using given url, or if thats invalid from the default.
