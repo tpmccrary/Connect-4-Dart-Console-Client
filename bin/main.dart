@@ -22,4 +22,6 @@ Future<void> main(List<String> arguments) async {
   // Set the strategy given from the user.
   // Might game info to its own object.
   serverInfo.setSelectedStrategy(selectedStratNum);
+
+  ConsoleUi.promptMove();
 }

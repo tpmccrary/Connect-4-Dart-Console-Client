@@ -37,4 +37,21 @@ class ConsoleUi {
       return 0;
     }
   }
+
+  static int promptMove() {
+    stdout.write('Select a slot [1-7]:');
+
+    try {
+      int choice = int.parse(stdin.readLineSync());
+      if (choice < 1 || choice > 7) {
+        print('Not a valid choice. Try again...');
+        return promptMove();
+      } else {
+        return choice;
+      }
+    } on FormatException {
+      print('Not a valid choice. Try again...');
+      return promptMove();
+    }
+  }
 }
