@@ -34,4 +34,26 @@ class NetworkHandler {
 
     return jsonMap;
   }
+
+  static Future<dynamic> createNewGame(
+      String strat, String givenUrl, String defaultUrl) async {
+    var httpResponse;
+
+    // Try and connect to server/website.
+    try {
+      httpResponse = await http.get(givenUrl + '/new/?strategy=' + strat);
+    } catch (e) {
+      httpResponse = await http.get(defaultUrl + '/new/?strategy=' + strat);
+    }
+
+    Map jsonMap = ResponseParser.parseInfo(httpResponse);
+
+    // If null, then the website contents was not in the right format.
+    // Try again usng the default url.
+    if (jsonMap == null) {
+      jsonMap = await getServerInfo(defaultUrl, defaultUrl);
+    }
+
+    return jsonMap;
+  }
 }

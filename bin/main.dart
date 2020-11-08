@@ -17,11 +17,14 @@ Future<void> main(List<String> arguments) async {
   serverInfo.storeStrategies(serverInfo.info);
 
   // Request which strategy user wants to use and store their option.
-  int selectedStratNum = ConsoleUi.requestStrategy(serverInfo.strategies);
+  String selectedStrat = ConsoleUi.requestStrategy(serverInfo.strategies);
 
-  // Set the strategy given from the user.
-  // Might game info to its own object.
-  serverInfo.setSelectedStrategy(selectedStratNum);
+  // Tell the user a new game is being created.
+  ConsoleUi.creatingNewGame();
 
-  ConsoleUi.promptMove();
+  // Create a new game from the server with given info.
+  Map newGameInfo = await NetworkHandler.createNewGame(
+      selectedStrat, serverInfo.givenUrl, serverInfo.defaultUrl);
+
+  // Creates a new game object to store all the game info.
 }

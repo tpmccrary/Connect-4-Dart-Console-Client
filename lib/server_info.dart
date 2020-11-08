@@ -13,9 +13,6 @@ class C4ServerInfo {
   /// A list of all the strategies available.
   List<String> _strategies = new List<String>();
 
-  /// The strategy selected by the user, starting form index 0.
-  int _selectedStrategy;
-
   // START Setters and Getters
 
   /// The default URL that the app will try to connect to.
@@ -63,18 +60,6 @@ class C4ServerInfo {
       String strategy = strategiesList[i];
 
       _strategies.add(strategy);
-    }
-  }
-
-  /// Given an int, stores it to be used later as an index for the strategies.
-  bool setSelectedStrategy(int selectedStratNum) {
-    selectedStratNum--;
-
-    if (selectedStratNum > -1 && selectedStratNum < _strategies.length) {
-      _selectedStrategy = selectedStratNum;
-      return true;
-    } else {
-      return false;
     }
   }
 }
