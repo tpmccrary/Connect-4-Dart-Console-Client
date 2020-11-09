@@ -41,4 +41,33 @@ class ConsoleUi {
   static void creatingNewGame() {
     print('Creating a new game...');
   }
+
+  static void displayBoard(List board, int slot) {
+    // Displays the board itself.
+    for (var row = 0; row < board.length; row++) {
+      for (var col = 0; col < board[row].length; col++) {
+        stdout.write(board[row][col] + '   ');
+      }
+      stdout.write('\n');
+    }
+
+    // Displays numbers under board.
+    for (var row = 0; row < board.length + 1; row++) {
+      stdout.write('${row + 1}   ');
+    }
+
+    stdout.write('\n');
+
+    if (slot != null) {
+      for (var row = 0; row < board.length; row++) {
+        if (slot == row) {
+          stdout.write('*');
+          break;
+        } else {
+          stdout.write('   ');
+        }
+      }
+      stdout.write('\n');
+    }
+  }
 }

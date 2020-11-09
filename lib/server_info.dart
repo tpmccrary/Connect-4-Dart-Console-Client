@@ -1,5 +1,5 @@
 /// Class to hold the server info (e.g. URL, JSON info, strategies)
-class C4ServerInfo {
+class ServerInfo {
   /// The default URL to the connect 4 server.
   final String _defaultUrl =
       'https://cssrvlab01.utep.edu/Classes/cs3360/tpmccrary/C4Service/src';
@@ -12,6 +12,9 @@ class C4ServerInfo {
 
   /// A list of all the strategies available.
   List<String> _strategies = new List<String>();
+
+  int boardWidth;
+  int boardHeight;
 
   // START Setters and Getters
 
@@ -61,5 +64,10 @@ class C4ServerInfo {
 
       _strategies.add(strategy);
     }
+  }
+
+  void storeBoardInfo(Map info) {
+    this.boardWidth = info['width'];
+    this.boardHeight = info['height'];
   }
 }
