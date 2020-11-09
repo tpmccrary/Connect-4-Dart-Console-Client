@@ -66,6 +66,7 @@ class ServerInfo {
     }
   }
 
+  /// Stores the info about the game board.
   void storeBoardInfo(Map info) {
     this.boardWidth = info['width'];
     this.boardHeight = info['height'];

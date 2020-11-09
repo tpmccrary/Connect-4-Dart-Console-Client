@@ -38,6 +38,7 @@ class ConsoleUi {
     }
   }
 
+  /// Tells the user a game is being created.
   static void creatingNewGame() {
     print('Creating a new game...');
   }
@@ -72,6 +73,7 @@ class ConsoleUi {
     }
   }
 
+  /// Asks user to make a move and returns the slot they chose.
   static int requestMove(int width) {
     print('Select a slot (1 - ${width}):');
 
@@ -85,6 +87,7 @@ class ConsoleUi {
     }
   }
 
+  /// Tells the user who won.
   static void acknowledgeWinner(
       bool isWin, bool isCpuWin, bool isDraw, bool isCpuDraw) {
     if (isWin == true) {

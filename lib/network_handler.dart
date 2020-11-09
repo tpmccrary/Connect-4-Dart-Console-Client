@@ -4,11 +4,6 @@ import 'response_parser.dart';
 
 /// Static class that takes care of network functions.
 class NetworkHandler {
-  // TODO: Use these somehow later.
-  static final String infoDirectory = '/info/';
-  static final String newDirectory = '/new/';
-  static final String playDirectory = '/play/';
-
   /// Get the http info from the given url. Else use the default url.
   static Future<dynamic> getServerInfo(
       String givenUrl, String defaultUrl) async {
@@ -35,6 +30,7 @@ class NetworkHandler {
     return jsonMap;
   }
 
+  /// Creates a new game from the server and returns the game info.
   static Future<dynamic> createNewGame(
       String strat, String givenUrl, String defaultUrl) async {
     var httpResponse;
@@ -57,6 +53,7 @@ class NetworkHandler {
     return jsonMap;
   }
 
+  /// Makes a play and returns the play info.
   static Future<Map> makePlay(
       String pid, int move, String givenUrl, String defaultUrl) async {
     var httpResponse;

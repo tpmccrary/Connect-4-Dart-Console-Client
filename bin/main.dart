@@ -37,17 +37,19 @@ Future<void> main(List<String> arguments) async {
       new GameBoard(serverInfo.boardWidth, serverInfo.boardHeight),
       newGameInfo['pid']);
 
+  // Start the main game loop of connect 4.
   mainGameLoop(game, serverInfo);
 }
 
+/// The main game loop of connect 4.
 void mainGameLoop(GameInfo game, ServerInfo serverInfo) async {
   // Flags to record if there was a win or draw.
-
   bool isWin = false;
   bool isCpuWin = false;
   bool isDraw = false;
   bool isCpuDraw = false;
 
+  // Keep playing while no one has won.
   while (isWin == false &&
       isCpuWin == false &&
       isDraw == false &&
@@ -72,12 +74,13 @@ void mainGameLoop(GameInfo game, ServerInfo serverInfo) async {
     game.gameBoard.updateBoard(game.playerMove, game.playInfo['move']['slot']);
   }
 
+  // Checks to see who won to highlight those pieces.
   if (isWin == true) {
     game.gameBoard.highlightWinner(game.playInfo['ack_move']['row']);
   } else if (isCpuWin == true) {
     game.gameBoard.highlightWinner(game.playInfo['move']['row']);
   }
-
+  // Displays the board with the winning rows/col and who won.
   ConsoleUi.displayBoard(game.gameBoard.board, game.playerMove);
   ConsoleUi.acknowledgeWinner(isWin, isCpuWin, isDraw, isCpuDraw);
 }
