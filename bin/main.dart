@@ -40,7 +40,7 @@ Future<void> main(List<String> arguments) async {
   mainGameLoop(game, serverInfo);
 }
 
-void mainGameLoop(GameInfo game, ServerInfo serverInfo) {
+void mainGameLoop(GameInfo game, ServerInfo serverInfo) async {
   // Flags to record if there was a win or draw.
 
   bool isWin = false;
@@ -54,6 +54,30 @@ void mainGameLoop(GameInfo game, ServerInfo serverInfo) {
       isCpuDraw == false) {
     // Display the game board to the user.
     ConsoleUi.displayBoard(game.gameBoard.board, game.playerMove);
-    return;
+
+    // Request user to choose a slot to place their piece.
+    game.playerMove = ConsoleUi.requestMove(game.gameBoard.width);
+
+    // Make a play, send it to the server, and store response.
+    game.playInfo = await NetworkHandler.makePlay(
+        game.pid, game.playerMove, serverInfo.givenUrl, serverInfo.defaultUrl);
+
+    // Get win or draw from server response.
+    isWin = game.playInfo['ack_move']['isWin'];
+    isCpuWin = game.playInfo['move']['isWin'];
+    isDraw = game.playInfo['ack_move']['isDraw'];
+    isCpuDraw = game.playInfo['move']['isDraw'];
+
+    // Update game board.
+    game.gameBoard.updateBoard(game.playerMove, game.playInfo['move']['slot']);
   }
+
+  if (isWin == true) {
+    game.gameBoard.highlightWinner(game.playInfo['ack_move']['row']);
+  } else if (isCpuWin == true) {
+    game.gameBoard.highlightWinner(game.playInfo['move']['row']);
+  }
+
+  ConsoleUi.displayBoard(game.gameBoard.board, game.playerMove);
+  ConsoleUi.acknowledgeWinner(isWin, isCpuWin, isDraw, isCpuDraw);
 }

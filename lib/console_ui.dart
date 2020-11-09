@@ -42,18 +42,19 @@ class ConsoleUi {
     print('Creating a new game...');
   }
 
+  /// Displays the game board to the user, along with what slot they chose.
   static void displayBoard(List board, int slot) {
     // Displays the board itself.
     for (var row = 0; row < board.length; row++) {
       for (var col = 0; col < board[row].length; col++) {
-        stdout.write(board[row][col] + '   ');
+        stdout.write(board[row][col] + '  ');
       }
       stdout.write('\n');
     }
 
     // Displays numbers under board.
     for (var row = 0; row < board.length + 1; row++) {
-      stdout.write('${row + 1}   ');
+      stdout.write('${row + 1}  ');
     }
 
     stdout.write('\n');
@@ -68,6 +69,32 @@ class ConsoleUi {
         }
       }
       stdout.write('\n');
+    }
+  }
+
+  static int requestMove(int width) {
+    print('Select a slot (1 - ${width}):');
+
+    int slot = int.parse(stdin.readLineSync());
+
+    if (slot < 1 || slot > width) {
+      print('Not a valid slot.');
+      return requestMove(width);
+    } else {
+      return slot - 1;
+    }
+  }
+
+  static void acknowledgeWinner(
+      bool isWin, bool isCpuWin, bool isDraw, bool isCpuDraw) {
+    if (isWin == true) {
+      print('You won, well done!!');
+    } else if (isCpuWin == true) {
+      print('You lost, better luck next time!');
+    } else if (isDraw == true || isCpuDraw == true) {
+      print('It\'s a draw!');
+    } else {
+      print('????');
     }
   }
 }

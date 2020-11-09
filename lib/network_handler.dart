@@ -56,4 +56,29 @@ class NetworkHandler {
 
     return jsonMap;
   }
+
+  static Future<Map> makePlay(
+      String pid, int move, String givenUrl, String defaultUrl) async {
+    var httpResponse;
+    // Try and get the info from the server.
+    try {
+      httpResponse = await http
+          .get(givenUrl + '/play/?pid=' + pid + '&move=' + move.toString());
+    } catch (e) {
+      // If not use the default url.
+      httpResponse = await http
+          .get(defaultUrl + '/play/?pid=' + pid + '&move=' + move.toString());
+    }
+
+    // Parse the info from the server and get a map.
+    Map jsonMap = ResponseParser.parseInfo(httpResponse);
+
+    // If null, then the website contents was not in the right format.
+    // Trys again using the defaultUrl.
+    if (jsonMap == null) {
+      jsonMap = await getServerInfo(defaultUrl, defaultUrl);
+    }
+
+    return jsonMap;
+  }
 }
