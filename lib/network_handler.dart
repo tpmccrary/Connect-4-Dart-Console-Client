@@ -1,3 +1,5 @@
+// Author: Timothy P. McCrary
+
 import 'package:http/http.dart' as http;
 import 'package:c4_app/response_parser.dart';
 import 'response_parser.dart';

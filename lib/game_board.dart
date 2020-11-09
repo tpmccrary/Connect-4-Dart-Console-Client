@@ -1,3 +1,5 @@
+// Author: Timothy P. McCrary
+
 /// Class that has the info of the game board.
 class GameBoard {
   /// The width of the board.

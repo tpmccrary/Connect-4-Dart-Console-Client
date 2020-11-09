@@ -1,3 +1,5 @@
+// Author: Timothy P. McCrary
+
 import 'dart:io';
 
 /// Static class responsible for communicating and recieving info from the user.

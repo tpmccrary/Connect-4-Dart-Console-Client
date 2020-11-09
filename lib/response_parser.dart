@@ -1,3 +1,5 @@
+// Author: Timothy P. McCrary
+
 import 'dart:convert';
 
 /// Static class responsable for parseing json info.

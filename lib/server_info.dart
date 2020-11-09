@@ -1,3 +1,5 @@
+// Author: Timothy P. McCrary
+
 /// Class to hold the server info (e.g. URL, JSON info, strategies)
 class ServerInfo {
   /// The default URL to the connect 4 server.

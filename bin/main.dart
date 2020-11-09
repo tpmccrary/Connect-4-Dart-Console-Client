@@ -1,3 +1,5 @@
+// Author: Timothy P. McCrary
+
 import 'package:c4_app/game_board.dart';
 import 'package:c4_app/game_info.dart';
 import 'package:c4_app/network_handler.dart';

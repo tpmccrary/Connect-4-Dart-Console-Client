@@ -1,3 +1,5 @@
+// Author: Timothy P. McCrary
+
 import 'package:c4_app/game_board.dart';
 
 /// Class that holds all the info about the current game.
